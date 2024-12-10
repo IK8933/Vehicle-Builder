@@ -72,9 +72,27 @@ if(vehicle.weight <= this.towingCapacity){
   // The details should include the VIN, make, model, year, weight, top speed, color, towing capacity, and wheels
     override printDetails(): void { 
       super.printDetails(); 
-      console.log(`VIN: ${this.vin}, \n Make: ${this.make}, \n Model: ${this.model}, 
-        \n Year: ${this.year}, \n Weight: ${this.weight}, \n Top Speed: ${this.topSpeed},
-        \n Color: ${this.color}, /n Towing capacity: ${this.towingCapacity} \n Wheels: ${this.wheels.length}`);
+      console.log(`VIN #: ${this.vin}`);
+      console.log(`Make: ${this.make}`)
+      console.log(`Model: ${this.model}`)
+      console.log(`Year: ${this.year}`)
+      console.log(`Weight: ${this.weight} lbs`)
+      console.log(`Top Speed: ${this.topSpeed}mph`)
+      console.log(`Color: ${this.color}`)
+      console.log(`Towing capacity: ${this.towingCapacity}`)
+      console.log(`Wheels: ${this.wheels.length}`)
+      console.log(
+        `Wheel 1: ${this.wheels[0].getDiameter} inch with a ${this.wheels[0].getTireBrand} tire`
+      );
+      console.log(
+        `Wheel 2: ${this.wheels[1].getDiameter} inch with a ${this.wheels[1].getTireBrand} tire`
+      );
+      console.log(
+        `Wheel 3: ${this.wheels[2].getDiameter} inch with a ${this.wheels[2].getTireBrand} tire`
+      );
+      console.log(
+        `Wheel 4: ${this.wheels[3].getDiameter} inch with a ${this.wheels[3].getTireBrand} tire`
+      );
       }
     }
     // Export the Truck class as the default export

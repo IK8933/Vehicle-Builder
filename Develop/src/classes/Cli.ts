@@ -1,10 +1,10 @@
+// Importing classes from other files
 import inquirer from "inquirer";
 import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
-import { DiffieHellmanGroup } from "crypto";
-import { TestContext } from "node:test";
 
+// Define the Cli class
 class Cli {
   vehicles: (Car | Truck | Motorbike)[];
   selectedVehicleVin: string | undefined;
@@ -64,24 +64,12 @@ class Cli {
   createCar(): void {
     inquirer
       .prompt([
-        { type: "input", 
-          name: "color", 
-          message: "Enter Color" },
-        { type: "input", 
-          name: "make", 
-          message: "Enter Make" },
-        { type: "input", 
-          name: "model", 
-          message: "Enter Model" },
-        { type: "input", 
-          name: "year", 
-          message: "Enter Year" },
-        { type: "input", 
-          name: "weight", 
-          message: "Enter Weight" },
-        { type: "input", 
-          name: "topSpeed", 
-          message: "Enter Top Speed" },
+        { type: "input", name: "color", message: "Enter Color" },
+        { type: "input", name: "make", message: "Enter Make" },
+        { type: "input", name: "model", message: "Enter Model" },
+        { type: "input", name: "year", message: "Enter Year" },
+        { type: "input", name: "weight", message: "Enter Weight" },
+        { type: "input", name: "topSpeed", message: "Enter Top Speed" },
       ])
       .then((answers) => {
         const car = new Car(
@@ -103,27 +91,13 @@ class Cli {
   createTruck(): void {
     inquirer
       .prompt([
-        { type: "input",
-          name: "color",
-            message: "Enter Color" },
-        { type: "input", 
-          name: "make", 
-          message: "Enter Make" },
-        { type: "input", 
-          name: "model", 
-          message: "Enter Model" },
-        { type: "input", 
-          name: "year", 
-          message: "Enter Year" },
-        { type: "input", 
-          name: "weight", 
-          message: "Enter Weight" },
-        { type: "input", 
-          name: "topSpeed", 
-          message: "Enter Top Speed" },
-        { type: "input", 
-          name: "towingCapacity", 
-          message: "Enter Towing Capacity" },
+        { type: "input", name: "color", message: "Enter Color" },
+        { type: "input", name: "make", message: "Enter Make" },
+        { type: "input", name: "model", message: "Enter Model" },
+        { type: "input", name: "year", message: "Enter Year" },
+        { type: "input", name: "weight", message: "Enter Weight" },
+        { type: "input", name: "topSpeed", message: "Enter Top Speed" },
+        { type: "input", name: "towingCapacity", message: "Enter Towing Capacity" },
       ])
       .then((answers) => {
         const truck = new Truck(
@@ -146,24 +120,12 @@ class Cli {
   createMotorbike(): void {
     inquirer
       .prompt([
-        { type: "input", 
-          name: "color", 
-          message: "Enter Color" },
-        { type: "input", 
-          name: "make", 
-          message: "Enter Make" },
-        { type: "input", 
-          name: "model", 
-          message: "Enter Model" },
-        { type: "input", 
-          name: "year", 
-          message: "Enter Year" },
-        { type: "input", 
-          name: "weight", 
-          message: "Enter Weight" },
-        { type: "input", 
-          name: "topSpeed", 
-          message: "Enter Top Speed" },
+        { type: "input", name: "color", message: "Enter Color" },
+        { type: "input", name: "make", message: "Enter Make" },
+        { type: "input", name: "model", message: "Enter Model" },
+        { type: "input", name: "year", message: "Enter Year" },
+        { type: "input", name: "weight", message: "Enter Weight" },
+        { type: "input", name: "topSpeed", message: "Enter Top Speed" },
       ])
       .then((answers) => {
         const motorbike = new Motorbike(
@@ -190,7 +152,7 @@ class Cli {
           name: "vehicleToTow",
           message: "Select a vehicle to tow",
           choices: this.vehicles
-            .filter((vehicle) => vehicle.vin !== truck.vin)
+            .filter((vehicle) => vehicle.vin !== truck.vin) // Prevent towing itself
             .map((vehicle) => ({
               name: `${vehicle.vin} -- ${vehicle.make} ${vehicle.model}`,
               value: vehicle.vin,
@@ -204,15 +166,12 @@ class Cli {
 
         if (!vehicleToTow) {
           console.log("Vehicle not found. Please try again.");
-          this.performActions();
+          this.performActions(); // Re-prompt if vehicle not found
           return;
         }
 
-        console.log(
-          `Towing ${vehicleToTow.make} ${vehicleToTow.model} with ${truck.make} ${truck.model}`
-        );
-        truck.tow(vehicleToTow);
-        this.performActions();
+        truck.tow(vehicleToTow); // Call the tow method
+        this.performActions(); // Re-prompt after towing action
       });
   }
 
@@ -257,6 +216,38 @@ class Cli {
 
           case "Start vehicle":
             selectedVehicle.start();
+            console.log(`The ${selectedVehicle.make} ${selectedVehicle.model} has started.`);
+            break;
+
+          case "Accelerate 5 MPH":
+            selectedVehicle.currentSpeed += 5;
+            console.log(
+              `The ${selectedVehicle.make} ${selectedVehicle.model} accelerated to ${selectedVehicle.currentSpeed} MPH.`
+            );
+            break;
+
+          case "Decelerate 5 MPH":
+            selectedVehicle.currentSpeed = Math.max(0, selectedVehicle.currentSpeed - 5);
+            console.log(
+              `The ${selectedVehicle.make} ${selectedVehicle.model} decelerated to ${selectedVehicle.currentSpeed} MPH.`
+            );
+            break;
+
+          case "Stop vehicle":
+            selectedVehicle.currentSpeed = 0;
+            console.log(`The ${selectedVehicle.make} ${selectedVehicle.model} has stopped.`);
+            break;
+
+          case "Turn right":
+            console.log(`The ${selectedVehicle.make} ${selectedVehicle.model} turned right.`);
+            break;
+
+          case "Turn left":
+            console.log(`The ${selectedVehicle.make} ${selectedVehicle.model} turned left.`);
+            break;
+
+          case "Reverse":
+            console.log(`The ${selectedVehicle.make} ${selectedVehicle.model} is reversing.`);
             break;
 
           case "Tow":
@@ -285,7 +276,6 @@ class Cli {
             this.exit = true;
             return;
         }
-
         this.performActions();
       });
   }
@@ -309,4 +299,5 @@ class Cli {
       });
   }
 }
+
 export default Cli;
