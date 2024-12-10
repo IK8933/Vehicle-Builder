@@ -42,7 +42,7 @@ class Truck extends Vehicle  implements AbleToTow{
     this.year = year;
     this.weight = weight;
     this.topSpeed = topSpeed;
-    this.towingCapacity =towingCapacity;
+    this.towingCapacity = towingCapacity;
     if (wheels.length !== 4) {
       this.wheels = [new Wheel(), new Wheel(), new Wheel(), new Wheel()];
     } else {
@@ -56,7 +56,8 @@ class Truck extends Vehicle  implements AbleToTow{
   // If it is not, log that the vehicle is too heavy to be towed
   tow(vehicle: Truck | Motorbike | Car): void {
     const vehicleType = vehicle.constructor.name;
-    const  getMakeNmodel = `${vehicle.make} ${vehicle.model}`
+    const getMakeNmodel = `${vehicle.make} ${vehicle.model}`;
+  
     
 if(vehicle.weight <= this.towingCapacity){
   console.log(`the vehicle ${vehicleType}: ${getMakeNmodel}: is being towed`);
