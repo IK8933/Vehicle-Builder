@@ -3,6 +3,7 @@ import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
 import { DiffieHellmanGroup } from "crypto";
+import { TestContext } from "node:test";
 
 class Cli {
   vehicles: (Car | Truck | Motorbike)[];
@@ -310,3 +311,10 @@ class Cli {
 }
 
 export default Cli;
+
+
+
+
+
+
+THIS IS A TestContext
