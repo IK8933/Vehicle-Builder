@@ -15,7 +15,7 @@ The Vehicle Builder project is a command-line application built with TypeScript 
 
 ## Installation
 1.	Clone the repository:
-git clone https://github.com/YourUsername/vehicle-builder.git
+git clone [https://github.com/YourUsername/vehicle-builder.git](https://github.com/IK8933/hw6VehicleBuilder.git)
 2.	Navigate to the project folder:
 cd vehicle-builder
 3.	Install dependencies:
