@@ -9,6 +9,7 @@ The Vehicle Builder project is a command-line application built with TypeScript 
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
+- [VideoLink](#VideoLink)
 - [License](#license)
 - [Questions](#questions)
 
